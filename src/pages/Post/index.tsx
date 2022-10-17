@@ -1,5 +1,38 @@
-import { PostContainer } from './styles'
+import { FaGithub, FaCalendarDay, FaComment } from 'react-icons/fa'
+import { FiChevronLeft } from 'react-icons/fi'
+import { GitLink } from '../../components/GitLink'
+import { PostContainer, PostContent, ReturnToHome } from './styles'
 
 export function Post() {
-  return <PostContainer></PostContainer>
+  return (
+    <PostContainer>
+      <PostContent>
+        <header>
+          <ReturnToHome>
+            <a href="/">
+              <FiChevronLeft /> Voltar
+            </a>
+          </ReturnToHome>
+          <GitLink
+            link="https://www.github.com/exodogurgel"
+            title="Ver no Github"
+          />
+        </header>
+        <h1>JavaScript data types and data structures</h1>
+        <footer>
+          <span>
+            <FaGithub />
+            exodogurgel
+          </span>
+          <span>
+            <FaCalendarDay />
+            Há 1 dia
+          </span>
+          <span>
+            <FaComment /> 5 comentários
+          </span>
+        </footer>
+      </PostContent>
+    </PostContainer>
+  )
 }
