@@ -17,7 +17,7 @@ export const PostHeading = styled.section`
   background: ${(props) => props.theme['blue-700']};
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 2rem 2.5rem;
+  padding: 2rem;
 
   header {
     display: flex;
@@ -94,5 +94,32 @@ export const ReturnToHome = styled.div`
     svg {
       font-size: 1rem;
     }
+  }
+`
+
+export const PostContent = styled.article`
+  padding: 2.5rem 2rem;
+
+  p {
+    line-height: 1.6;
+    color: ${(props) => props.theme['blue-200']};
+
+    &:first-child {
+      margin-bottom: 2rem;
+    }
+  }
+
+  strong:nth-child(2) {
+    color: ${(props) => props.theme.blue};
+    text-decoration: underline;
+  }
+`
+
+export const CodeExample = styled.div`
+  margin-top: 1.5rem;
+  width: 100%;
+
+  img {
+    width: 100%;
   }
 `
