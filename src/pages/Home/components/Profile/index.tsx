@@ -1,8 +1,8 @@
 import { FaGithub, FaBuilding, FaUserFriends } from 'react-icons/fa'
-import { HiExternalLink } from 'react-icons/hi'
-import { GitLink, ProfileContainer, ProfileContent } from './styles'
+import { ProfileContainer, ProfileContent } from './styles'
 
 import profileImg from '../../../../assets/profile.jpeg'
+import { GitLink } from '../../../../components/GitLink'
 
 export function Profile() {
   return (
@@ -11,11 +11,7 @@ export function Profile() {
       <ProfileContent>
         <header>
           <h2>Êxodo Gurgel</h2>
-          <GitLink>
-            <a href="https://www.github.com/exodogurgel" target="blank">
-              Github <HiExternalLink />
-            </a>
-          </GitLink>
+          <GitLink link="https://www.github.com/exodogurgel" title="Github" />
         </header>
         <p>
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
