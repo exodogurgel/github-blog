@@ -48,3 +48,14 @@ export const SearchSection = styled.section`
     }
   }
 `
+
+export const Publications = styled.section`
+  margin-block: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`

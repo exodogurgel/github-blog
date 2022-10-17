@@ -1,5 +1,6 @@
+import { PostCard } from './components/PostCard'
 import { Profile } from './components/Profile'
-import { HomeContainer, SearchSection } from './styles'
+import { HomeContainer, Publications, SearchSection } from './styles'
 
 export function Home() {
   return (
@@ -12,6 +13,12 @@ export function Home() {
         </div>
         <input type="text" placeholder="Buscar conteúdo" />
       </SearchSection>
+      <Publications>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </Publications>
     </HomeContainer>
   )
 }
