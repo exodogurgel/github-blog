@@ -1,12 +1,12 @@
 import { FaGithub, FaCalendarDay, FaComment } from 'react-icons/fa'
 import { FiChevronLeft } from 'react-icons/fi'
 import { GitLink } from '../../components/GitLink'
-import { PostContainer, PostContent, ReturnToHome } from './styles'
+import { PostContainer, PostHeading, ReturnToHome } from './styles'
 
 export function Post() {
   return (
     <PostContainer>
-      <PostContent>
+      <PostHeading>
         <header>
           <ReturnToHome>
             <a href="/">
@@ -32,7 +32,7 @@ export function Post() {
             <FaComment /> 5 comentários
           </span>
         </footer>
-      </PostContent>
+      </PostHeading>
     </PostContainer>
   )
 }

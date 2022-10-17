@@ -13,7 +13,7 @@ export const PostContainer = styled.div`
   }
 `
 
-export const PostContent = styled.section`
+export const PostHeading = styled.section`
   background: ${(props) => props.theme['blue-700']};
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
