@@ -99,6 +99,16 @@ export const ReturnToHome = styled.div`
 
 export const PostContent = styled.article`
   padding: 2.5rem 2rem;
+  max-width: 864px;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+
+  li {
+    list-style-position: inside;
+  }
 
   p {
     line-height: 1.6;
@@ -117,6 +127,7 @@ export const PostContent = styled.article`
 
 export const CodeExample = styled.div`
   margin-top: 1.5rem;
+  max-width: 864px;
   width: 100%;
 
   img {
