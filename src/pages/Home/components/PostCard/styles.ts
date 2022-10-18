@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
-export const PostCardContainer = styled.a`
-  text-decoration: none;
+export const PostCardContainer = styled.button`
   padding: 1.875rem;
   background: ${(props) => props.theme['blue-600']};
   border: none;

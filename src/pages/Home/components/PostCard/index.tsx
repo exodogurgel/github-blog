@@ -16,7 +16,7 @@ export function PostCard({ data }: PostCardProps) {
   }
 
   return (
-    <PostCardContainer href="#">
+    <PostCardContainer>
       <div>
         <strong>{data.title}</strong>
         <span>
