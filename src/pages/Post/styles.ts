@@ -124,13 +124,3 @@ export const PostContent = styled.article`
     text-decoration: underline;
   }
 `
-
-export const CodeExample = styled.div`
-  margin-top: 1.5rem;
-  max-width: 864px;
-  width: 100%;
-
-  img {
-    width: 100%;
-  }
-`
