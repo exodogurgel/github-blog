@@ -38,7 +38,7 @@ export function Post() {
   useEffect(() => {
     async function fetchPost() {
       const response = await api.get<PostProps>(
-        `/repos/exodogurgel/github-blog/issuess/${params.issueNumber}`,
+        `/repos/exodogurgel/github-blog/issues/${params.issueNumber}`,
       )
 
       setPost(response.data)
@@ -80,9 +80,16 @@ export function Post() {
         <BannerSkeleton />
       )}
 
-      <PostContent>
-        {<ReactMarkdown>{post.body}</ReactMarkdown> || <Skeleton count={10} />}
-      </PostContent>
+      {post.body ? (
+        <PostContent>{<ReactMarkdown>{post.body}</ReactMarkdown>}</PostContent>
+      ) : (
+        <PostContent>
+          <Skeleton
+            count={10}
+            style={{ height: '1.3rem', marginBottom: '1rem' }}
+          />
+        </PostContent>
+      )}
     </PostContainer>
   )
 }
