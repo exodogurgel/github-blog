@@ -46,6 +46,8 @@ export function Home() {
     if (event.key === 'Enter') fetchPosts(setSearch)
   }
 
+  const publicationsAmount = posts.length
+
   useEffect(() => {
     fetchPosts()
   }, [])
@@ -56,7 +58,7 @@ export function Home() {
       <SearchSection>
         <div>
           <h2>Publicações</h2>
-          <span>6 publicações</span>
+          <span>{publicationsAmount} publicações</span>
         </div>
         <input
           type="text"
