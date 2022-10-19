@@ -12,7 +12,6 @@ import { PostContainer, PostHeading, PostContent, ReturnToHome } from './styles'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-// import codeImg from '../../assets/code.png'
 import { useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
 import { BannerSkeleton } from './components/BannerSkeleton'
@@ -36,6 +35,7 @@ export function Post() {
   const params = useParams()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     async function fetchPost() {
       const response = await api.get<PostProps>(
         `/repos/exodogurgel/github-blog/issues/${params.issueNumber}`,

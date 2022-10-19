@@ -1,81 +1,63 @@
 import { FaGithub, FaBuilding, FaUserFriends } from 'react-icons/fa'
 import { ProfileContainer, ProfileContent } from './styles'
 
-import profileImg from '../../../../assets/profile.jpeg'
 import { GitLink } from '../../../../components/GitLink'
 import { useEffect, useState } from 'react'
 import { api } from '../../../../lib/axios'
+import { ProfileSkeleton } from '../ProfileSkeleton'
 
 interface ProfileProps {
-  avatarURL: string
+  avatar_url: string
   bio: string
-  htmlURL: string
+  html_url: string
   followers: number
   login: string
   name: string
 }
 
 export function Profile() {
-  const [profile, setProfile] = useState<ProfileProps>({
-    avatarURL: '',
-    bio: '',
-    htmlURL: '',
-    followers: 1,
-    login: '',
-    name: '',
-  })
+  const [profile, setProfile] = useState<ProfileProps>({} as ProfileProps)
 
   async function fetchProfile() {
-    const response = await api.get('/users/exodogurgel')
+    const { data } = await api.get<ProfileProps>('/users/exodogurgel')
 
-    const {
-      avatar_url: avatarURL,
-      bio,
-      html_url: htmlURL,
-      followers,
-      login,
-      name,
-    } = response.data
-
-    const filteredData = {
-      avatarURL,
-      bio,
-      htmlURL,
-      followers,
-      login,
-      name,
-    }
-
-    setProfile(filteredData)
+    setProfile(data)
+    console.log(data)
   }
 
   useEffect(() => {
     fetchProfile()
   }, [])
   return (
-    <ProfileContainer>
-      <img src={profileImg} alt="" />
-      <ProfileContent>
-        <header>
-          <h2>{profile.name}</h2>
-          <GitLink link={profile.htmlURL} title="Github" />
-        </header>
-        <p>{profile.bio}</p>
-        <footer>
-          <span>
-            <FaGithub />
-            {profile.login}
-          </span>
-          <span>
-            <FaBuilding />
-            Rocketseat
-          </span>
-          <span>
-            <FaUserFriends />
-            {profile.followers} seguidores
-          </span>
-        </footer>
-      </ProfileContent>
-    </ProfileContainer>
+    <>
+      {profile.avatar_url ? (
+        <ProfileContainer>
+          <img src={profile.avatar_url} alt="" />
+          <ProfileContent>
+            <header>
+              <h2>{profile.name}</h2>
+              <GitLink link={profile.html_url} title="Github" />
+            </header>
+            <p>{profile.bio}</p>
+            <footer>
+              <span>
+                <FaGithub />
+                {profile.login}
+              </span>
+              <span>
+                <FaBuilding />
+                Rocketseat
+              </span>
+              <span>
+                <FaUserFriends />
+                {profile.followers} seguidores
+              </span>
+            </footer>
+          </ProfileContent>
+        </ProfileContainer>
+      ) : (
+        <ProfileSkeleton />
+      )}
+    </>
   )
 }

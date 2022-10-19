@@ -7,6 +7,7 @@ import { Profile } from './components/Profile'
 import { HomeContainer, Publications, SearchSection } from './styles'
 import React, { useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
+import { PostCardSkeleton } from './components/PostCardSkeleton'
 
 const searchInputSchema = z.object({
   query: z.string(),
@@ -58,7 +59,10 @@ export function Home() {
       <SearchSection>
         <div>
           <h2>Publicações</h2>
-          <span>{publicationsAmount} publicações</span>
+          <span>
+            {publicationsAmount}{' '}
+            {publicationsAmount > 1 ? 'publicações' : 'publicação'}
+          </span>
         </div>
         <input
           type="text"
@@ -68,9 +72,16 @@ export function Home() {
         />
       </SearchSection>
       <Publications>
-        {posts.map((post) => {
-          return <PostCard key={post.number} data={post} />
-        })}
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            return <PostCard key={post.number} data={post} />
+          })
+        ) : (
+          <>
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </>
+        )}
       </Publications>
     </HomeContainer>
   )
