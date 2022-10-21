@@ -2,7 +2,7 @@ import { FaGithub, FaBuilding, FaUserFriends } from 'react-icons/fa'
 import { ProfileContainer, ProfileContent } from './styles'
 
 import { GitLink } from '../../../../components/GitLink'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { api } from '../../../../lib/axios'
 import { ProfileSkeleton } from '../ProfileSkeleton'
 
@@ -18,16 +18,14 @@ interface ProfileProps {
 export function Profile() {
   const [profile, setProfile] = useState<ProfileProps>({} as ProfileProps)
 
-  async function fetchProfile() {
+  const fetchProfile = useCallback(async () => {
     const { data } = await api.get<ProfileProps>('/users/exodogurgel')
-
     setProfile(data)
-    console.log(data)
-  }
+  }, [])
 
   useEffect(() => {
     fetchProfile()
-  }, [])
+  }, [fetchProfile])
   return (
     <>
       {profile.avatar_url ? (

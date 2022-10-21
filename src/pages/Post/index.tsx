@@ -12,7 +12,7 @@ import { PostContainer, PostHeading, PostContent, ReturnToHome } from './styles'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
 import { BannerSkeleton } from './components/BannerSkeleton'
 
@@ -34,17 +34,19 @@ export function Post() {
   const [post, setPost] = useState<PostProps>({} as PostProps)
   const params = useParams()
 
+  const fetchPost = useCallback(async () => {
+    const response = await api.get<PostProps>(
+      `/repos/exodogurgel/github-blog/issues/${params.issueNumber}`,
+    )
+
+    setPost(response.data)
+  }, [params])
+
   useEffect(() => {
     window.scrollTo(0, 0)
-    async function fetchPost() {
-      const response = await api.get<PostProps>(
-        `/repos/exodogurgel/github-blog/issues/${params.issueNumber}`,
-      )
 
-      setPost(response.data)
-    }
     fetchPost()
-  }, [params])
+  }, [params, fetchPost])
   return (
     <PostContainer>
       {post.title ? (

@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { PostCard } from './components/PostCard'
 import { Profile } from './components/Profile'
 import { HomeContainer, Publications, SearchSection } from './styles'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
 import { PostCardSkeleton } from './components/PostCardSkeleton'
 
@@ -33,14 +33,14 @@ export function Home() {
     resolver: zodResolver(searchInputSchema),
   })
 
-  async function fetchPosts(query?: string) {
+  const fetchPosts = useCallback(async (query?: string) => {
     const response = await api.get<SearchPostsProps>(
       `search/issues?q=${query ? query + '%20' : ''}repo:exodogurgel/github-blog
       `,
     )
 
     setPosts(response.data.items)
-  }
+  }, [])
 
   async function handleOnKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
     const setSearch = watch('query')
@@ -51,7 +51,7 @@ export function Home() {
 
   useEffect(() => {
     fetchPosts()
-  }, [])
+  }, [fetchPosts])
 
   return (
     <HomeContainer>
