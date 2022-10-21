@@ -9,6 +9,10 @@ export const ProfileContainer = styled.section`
   grid-template-columns: 9.25rem 1fr;
   gap: 2rem;
 
+  div:last-child {
+    width: 100%;
+  }
+
   .img {
     width: 9.25rem;
     height: 9.25rem;
